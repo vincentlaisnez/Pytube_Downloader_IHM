@@ -51,7 +51,7 @@ class MainWindow(QWidget):
 
     def modify_widgets(self):
         self.pg_bar.setVisible(False)
-        self.le_url.setPlaceholderText("Ajouter un lien YT")
+        self.le_url.setPlaceholderText("Ajouter/coller un lien YT puis touche 'entrée' pour valider")
 
     def add_widgets_to_layouts(self):
         self.main_layout.addWidget(self.lbl_list_urls)
