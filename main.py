@@ -69,7 +69,8 @@ class MainWindow(QWidget):
     def lunch_download(self):
         directory_change()
         self.items = [self.lw_urls.item(i).text() for i in range(self.lw_urls.count())]
-
+        if len(self.items) == 0:
+            return
         self.thread = QThread()
         self.worker = Worker(self.items)
         self.worker.moveToThread(self.thread)
@@ -86,7 +87,8 @@ class MainWindow(QWidget):
         self.thread.quit()
 
     def add_url_to_list(self):
-        self.lw_urls.addItem(self.le_url.text())
+        if self.le_url.text().startswith("https://www.youtube.com/") or self.le_url.text().startswith("https://youtu.be/"):
+            self.lw_urls.addItem(self.le_url.text())
         self.le_url.clear()
 
     def url_to_download(self):

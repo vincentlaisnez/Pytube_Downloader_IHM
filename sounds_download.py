@@ -11,19 +11,21 @@ def directory_change():
     os.chdir(DL_DIR)
 
 
-# download sounds and save .mp3
+# download sounds and save .mp3 or mp4 if error
 def download(item):
     """
     :param item: url Youtube
     :return: bool for succes dl
     """
-    if item.startswith("https://www.youtube.com/") or item.startswith("https://youtu.be/"):
-        youtube_video = YouTube(item)
-        # youtube_video.streams pour voir les différents itag video et audio
-        # utiliser .itag(numéro itag) pour télécharger uniquement par le tag
-        stream = youtube_video.streams.filter(only_audio=True).first()
+    youtube_video = YouTube(item)
+    stream = youtube_video.streams.filter(only_audio=True).first()
+    try:
         stream.download(filename=f'{youtube_video.title}.mp3')
-        return True
+    except OSError:
+        print(f"Impossible de telecharger {youtube_video.title}.mp3")
+        print("téléchargement en mp4")
+        stream.download()
+    return True
 
 
 if __name__ == '__main__':
