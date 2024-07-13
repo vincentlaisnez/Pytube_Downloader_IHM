@@ -69,7 +69,7 @@ class MainWindow(QWidget):
     def lunch_download(self):
         directory_change()
         self.items = [self.lw_urls.item(i).text() for i in range(self.lw_urls.count())]
-        if len(self.items) == 0:
+        if not self.items:
             return
         self.thread = QThread()
         self.worker = Worker(self.items)
