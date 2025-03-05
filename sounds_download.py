@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from pytube import YouTube
+from pytubefix import YouTube
 
 
 # config directory
