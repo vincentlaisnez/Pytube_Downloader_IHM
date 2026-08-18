@@ -17,7 +17,7 @@ def download(item):
     :param item: url Youtube
     :return: bool for succes dl
     """
-    youtube_video = YouTube(item)
+    youtube_video = YouTube(item,'WEB_MUSIC')
     stream = youtube_video.streams.filter(only_audio=True).first()
     try:
         stream.download(filename=f'{youtube_video.title}.mp3')
